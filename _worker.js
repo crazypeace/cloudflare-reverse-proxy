@@ -4,26 +4,26 @@ addEventListener('fetch', event => {
   
   async function handleRequest(request) {
     const url = new URL(request.url);
-    //const actualUrlStr = url.pathname.replace("/proxy/","")
+    console.log(url.pathname);
 
     // 如果想把 /proxy/ 当作某种钥匙
     const prefix = "/proxy/";
 
-    // 那么应该判断是否以 /proxy/ 开头
+    // 判断是否以 /proxy/ 开头
     if (!url.pathname.startsWith(prefix)) {
       return new Response('404', {
         headers: {
           "content-type": "text/html;charset=UTF-8",
         },
         status: 404
-      })
+      });
     }
 
-    // 再把 /proxy/ 从字符串的头部去掉
+    // 把 /proxy/ 从字符串的头部去掉
     const actualUrlStr = url.pathname.slice(prefix.length);    
-    console.log(actualUrlStr)
+    console.log(actualUrlStr);
   
-    const actualUrl = new URL(actualUrlStr)
+    const actualUrl = new URL(actualUrlStr);
   
     const modifiedRequest = new Request(actualUrl, {
       headers: request.headers,
