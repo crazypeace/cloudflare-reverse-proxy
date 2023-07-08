@@ -11,7 +11,7 @@ addEventListener('fetch', event => {
 
     // 判断是否以 /proxy/ 开头
     if (!url.pathname.startsWith(prefix)) {
-      return new Response('404', {
+      return new Response('404 error prefix', {
         headers: {
           "content-type": "text/html;charset=UTF-8",
         },
